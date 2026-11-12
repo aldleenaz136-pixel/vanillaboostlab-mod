@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "local.vanillaboost.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "client": [
+    "ShapesMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

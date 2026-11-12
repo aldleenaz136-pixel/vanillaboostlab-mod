@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "vanillaboost_lab",
+  "version": "${version}",
+  "name": "VanillaBoost Lab",
+  "description": "Experimental original face-shape memoization. No FPS or compatibility guarantee.",
+  "environment": "client",
+  "license": "MIT",
+  "mixins": [
+    "vanillaboost-lab.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.3",
+    "minecraft": "26.2",
+    "java": ">=25"
+  }
+}
