@@ -1,9 +1,12 @@
 import java.util.zip.ZipFile
 
-ZipFile zip = new ZipFile(new File(rootProject.layout.buildDirectory.asFile.get(), 'libs/vanillaboost-lab-0.1.0-experimental.jar'))
-assert zip.getEntry('vanillaboost-lab.mixins.json') != null
-assert zip.getEntry('fabric.mod.json') != null
-assert zip.getEntry('local/vanillaboost/mixin/ShapesMixin.class') != null
-assert zip.getEntry('local/vanillaboost/PairCache.class') != null
-zip.close()
-println 'Inhalt der JAR geprueft: Mixin-Konfiguration und beide Klassen sind enthalten.'
+gradle.projectsEvaluated {
+    File jar = new File(gradle.rootProject.layout.buildDirectory.asFile.get(), 'libs/vanillaboost-lab-0.1.0-experimental.jar')
+    ZipFile zip = new ZipFile(jar)
+    assert zip.getEntry('vanillaboost-lab.mixins.json') != null
+    assert zip.getEntry('fabric.mod.json') != null
+    assert zip.getEntry('local/vanillaboost/mixin/ShapesMixin.class') != null
+    assert zip.getEntry('local/vanillaboost/PairCache.class') != null
+    zip.close()
+    println 'Inhalt der JAR geprueft: Mixin-Konfiguration und beide Klassen sind enthalten.'
+}
