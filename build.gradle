@@ -1,21 +1,32 @@
 plugins {
     id 'net.fabricmc.fabric-loom' version "${loom_version}"
 }
+
 base { archivesName = 'vanillaboost-lab' }
+
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     implementation "net.fabricmc:fabric-loader:${project.loader_version}"
 }
+
 java {
     sourceCompatibility = JavaVersion.VERSION_25
     targetCompatibility = JavaVersion.VERSION_25
     withSourcesJar()
 }
+
 tasks.withType(JavaCompile).configureEach { options.release = 25 }
+
+tasks.named('test') {
+    failOnNoDiscoveredTests = false
+    exclude '**/PairCacheSelfTest.class'
+}
+
 processResources {
     inputs.property 'version', project.version
     filesMatching('fabric.mod.json') { expand version: project.version }
 }
+
 tasks.register('cacheSelfTest', JavaExec) {
     dependsOn testClasses
     classpath = sourceSets.test.runtimeClasspath
